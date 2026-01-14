@@ -2,13 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Models\Category;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\PlatformController;
+use App\Http\Controllers\GamesController;
 
-Route::get('/', [CategoryController::class, 'GetCategories'])->name('home');
+Route::get('/', [GamesController::class, 'GetCategories'])->name('home');
 
-Route::get('/platform', [PlatformController::class, 'GetPlatforms'])->name('platforms');
+Route::get('/platform', [GamesController::class, 'getPlatforms'])->name('platforms');
+
+Route::get('/info', [GamesController::class, 'getInfo'])->name('info');
 
 Route::get('/register', function () {
     return view('register');
