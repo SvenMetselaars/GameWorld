@@ -44,6 +44,11 @@
 
         @include('partials.game', ['games' => $games])
 
+                            <form action="/logout" method="POST">
+                        @csrf
+                        <button type="submit">Log out</button>
+                    </form>
+
     @else
         @include('partials.login')
     @endauth

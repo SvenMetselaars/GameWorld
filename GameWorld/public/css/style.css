@@ -149,7 +149,7 @@ nav {
     width: 100%;
 }
 
-.navbar{
+.navbar {
     display: flex;
     padding: 0px !important;
     border-style: solid;
@@ -162,6 +162,21 @@ nav {
     position: fixed;
     top: 0;
     width: 100%;
+}
+
+.navbar3,
+.navbarxbox {
+    border-color: #0e7a0d;
+}
+
+.navbar1,
+.navbarswitch {
+    border-color: red;
+}
+
+.navbar2,
+.navbarps5 {
+    border-color: blue;
 }
 
 .navbuttons {
@@ -384,83 +399,72 @@ nav {
     margin-left: 10px;
 }
 
-.priceratingswitch{
+.priceratingxbox,
+.priceratingps5,
+.priceratingswitch {
     border-bottom-style: solid;
-    border-bottom-color: red;
-    width: 200px;
-    display: flex;
-    justify-content: space-between;
-    height: 15%;
-}
-.priceratingps5{
-    border-bottom-style: solid;
-    border-bottom-color: blue;
-    width: 200px;
-    display: flex;
-    justify-content: space-between;
-    height: 15%;
-}
-.priceratingxbox{
-    border-bottom-style: solid;
-    border-bottom-color: #0e7a0d;
     width: 200px;
     display: flex;
     justify-content: space-between;
     height: 15%;
 }
 
+.priceratingswitch {
+    border-bottom-color: red;
+}
+
+.priceratingps5 {
+    border-bottom-color: blue;
+}
+
+.priceratingxbox {
+    border-bottom-color: #0e7a0d;
+}
+
+.topsidexbox,
+.topsideps5,
 .topsideswitch {
     border-style: solid;
     border-color: white;
-    border-bottom-color: red;
     padding-bottom: 40px;
     display: flex;
     justify-content: space-between;
+}
+
+.topsideswitch {
+    border-bottom-color: red;
 }
 
 .topsideps5 {
-    border-style: solid;
-    border-color: white;
     border-bottom-color: blue;
-    padding-bottom: 40px;
-    display: flex;
-    justify-content: space-between;
 }
 
 .topsidexbox {
-    border-style: solid;
-    border-color: white;
     border-bottom-color: #0e7a0d;
-    padding-bottom: 40px;
-    display: flex;
-    justify-content: space-between;
 }
 
+.shoppingpartxbox,
+.shoppingpartps5,
 .shoppingpartswitch {
     margin-top: 100px;
     margin-right: 50px;
-    background-color: red;
-    border-style: solid;
     border-radius: 15px;
     padding: 10px;
+}
+
+.shoppingpartswitch {
+    background-color: red;
+    border-style: solid;
 }
 
 .shoppingpartps5 {
-    margin-top: 100px;
-    margin-right: 50px;
     background-color: blue;
     border-style: solid;
-    border-radius: 15px;
-    padding: 10px;
 }
 
 .shoppingpartxbox {
-    margin-top: 100px;
-    margin-right: 50px;
     background-color: #0e7a0d;
     border-style: solid;
-    border-radius: 15px;
-    padding: 10px;
 }
 
 .gameinfo {
@@ -470,7 +474,283 @@ nav {
 .infovideo{
     width: 500px;
     height: 350px;
+    margin-top: 100px;
+}
+
+.productinfopage input[type="text"],
+.productinfopage input[type="number"],
+.productinfopage select,
+.productinfopage textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.productinfopage label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.categories-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.categories-checkboxes label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: normal;
+}
+
+.image-upload {
+    margin-top: 10px;
+}
+
+.image-upload input[type="file"] {
+    display: block;
+    margin-top: 5px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-save, .btn-cancel {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-save {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-save:hover {
+    background-color: #45a049;
+}
+
+.btn-cancel {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #da190b;
 }
 
 /*#endregion info page*/
+
+/*#region cart page*/
+
+.game-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.delete-form {
+    display: inline-block;
+    margin: 0;
+}
+
+.btn-view-details,
+.btn-delete {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+.btn-view-details {
+    background-color: #007bff;
+    color: white;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-view-details:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+.btn-delete:active,
+.btn-view-details:active {
+    transform: translateY(0);
+}
+
+.checkout-section {
+    background-color: #1a1a1a;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    margin-top: 30px;
+}
+
+.checkout-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.checkout-title {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.checkout-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Coupon Section */
+.coupon-section {
+    background-color: #252525;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+.coupon-form {
+    display: flex;
+    gap: 10px;
+}
+
+.coupon-input {
+    flex: 1;
+    padding: 12px 16px;
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.coupon-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.coupon-input::placeholder {
+    color: #888;
+}
+
+.btn-apply-coupon {
+    padding: 12px 24px;
+    background-color: #333;
+    color: #ffffff;
+    border: 1px solid #444;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-apply-coupon:hover {
+    background-color: #444;
+    border-color: #555;
+}
+
+/* Price Breakdown */
+.price-breakdown {
+    background-color: #252525;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: #cccccc;
+    font-size: 15px;
+}
+
+.price-row:last-child {
+    margin-bottom: 0;
+}
+
+.price-row.discount {
+    color: #4CAF50;
+}
+
+.price-row.total {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.price-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #444, transparent);
+    margin: 15px 0;
+}
+
+/* Checkout Button */
+.btn-checkout {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.btn-checkout:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #003d82 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+.btn-checkout:active {
+    transform: translateY(0);
+}
+
+/*#endregion cart page*/
 

@@ -11,7 +11,7 @@
             <input type="email"     placeholder="E-Mail"    name="loginEmail"       />
             <input type="password"  placeholder="Password"  name="loginpassword"    />
             <input type="submit"    value="Sign in"         name="loginButton"      />
-            <h2>dont have an acount yet? <a href="login.php?page=register">register Here!</a></h2>
+            <h2>dont have an acount yet? <a href="/register">register Here!</a></h2>
         </form>
     </div>
 </div>

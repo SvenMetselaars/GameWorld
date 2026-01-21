@@ -11,7 +11,7 @@
 <body>
     @auth
 
-        @include('partials.navbar')
+        @include('partials.navbar', ['console' => 'navbar' . $activePlatform])
 
         <div class="bannerall">
             <img src="{{ asset('storage/bannerall.jpg') }}" class="banner"/>

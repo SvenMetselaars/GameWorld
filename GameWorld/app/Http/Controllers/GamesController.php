@@ -45,8 +45,129 @@ class GamesController extends Controller
     public function getInfo(Request $request)
     {
         $gameId = $request->get('game');
-        $games = Game::with(['categories', 'platform'])->get();
+        $platforms = Platform::all();
+        $categories = Category::all();
 
-        return view('info', compact('games'));
+        $game = Game::with(['categories', 'platform'])
+            ->findOrFail($gameId);
+
+        $relatedGames = Game::whereHas('categories', function ($query) use ($game) {
+                $query->whereIn(
+                    'categories.id',
+                    $game->categories->pluck('id')
+                );
+            })
+            ->where('id', '!=', $game->id)
+            ->take(5)
+            ->get();
+
+        return view('info', compact('game', 'relatedGames', 'platforms', 'categories'));
+    }
+
+    public function updateGame(Game $game, Request $request)
+    { 
+        // check if this info has been recieved
+        $incomingFields = $request->validate([
+            'title' => 'required',
+            'price' => 'required',
+            'rating' => 'required',
+            'platform_id' => 'required',
+            'info' => 'required',
+            'categories' => 'required|array',
+            'categories.*' => 'exists:categories,id'
+        ]);
+
+        // only check these for tags. (ones that writes code)
+        $stringFields = ['title','price','rating','platform_id','info'];
+        foreach ($stringFields as $field) {
+            $incomingFields[$field] = strip_tags($incomingFields[$field]);
+        }
+
+        // update
+        $game->update($incomingFields);
+
+        // Sync categories — replaces old ones with new selection
+        $game->categories()->sync($request->categories);
+
+        // go to this page
+        return redirect('/');
+    }
+
+    function addToCart(Request $request)
+    {
+        $incomingFields = $request->validate([
+            'game_id' => 'required|exists:games,id',
+            'quantity' => 'required|integer|min:1'
+        ]);
+
+        $cart = session()->get('cart', []);
+
+        $gameId = $incomingFields['game_id'];
+        $quantity = $incomingFields['quantity'];
+
+        if (isset($cart[$gameId])) {
+            $cart[$gameId] += $quantity;
+        } else {
+            $cart[$gameId] = $quantity;
+        }
+
+        session()->put('cart', $cart);
+
+        return redirect()->back()->with('success', 'Game added to cart!');
+    }
+
+    function getCart(Request $request)
+    {
+        $cart = session()->get('cart', []);
+        $cartItems = [];
+        $totalprice = 0;
+
+
+        foreach ($cart as $gameId => $quantity) {
+            $game = Game::find($gameId);
+            if ($game) {
+                $cartItems[] = [
+                    'game' => $game,
+                    'quantity' => $quantity,
+                ];
+            }
+            $totalprice += $game->price * $quantity;
+        }
+
+        $subtotal = $totalprice / 100 * 79;
+        $tax = $totalprice - $subtotal;
+
+        return view('cart', compact('cartItems', 'totalprice', 'subtotal', 'tax'));
+    }
+
+    function removeFromCart(Request $request)
+    {
+        $incomingFields = $request->validate([
+            'game_id' => 'required|exists:games,id',
+        ]);
+
+        $cart = session()->get('cart', []);
+        $gameId = $incomingFields['game_id'];
+
+        if (isset($cart[$gameId])) {
+            unset($cart[$gameId]);
+            session()->put('cart', $cart);
+        }
+
+        return redirect()->back()->with('success', 'Game removed from cart!');
+    }
+
+    function checkout(Request $request)
+    {
+        $cart = session()->get('cart', []);
+        $user = $request->user();
+
+        foreach ($cart as $gameId => $quantity) {
+            $user->purchasedGames()->attach($gameId, ['amount' => $quantity]);
+        }
+
+        session()->forget('cart');
+
+        return redirect('/')->with('success', 'Checkout complete! Thank you for your purchase.');
     }
 }

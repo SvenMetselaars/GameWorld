@@ -10,6 +10,8 @@ Route::get('/platform', [GamesController::class, 'getPlatforms'])->name('platfor
 
 Route::get('/info', [GamesController::class, 'getInfo'])->name('info');
 
+Route::get('/cart', [GamesController::class, 'getCart'])->name('cart');
+
 Route::get('/register', function () {
     return view('register');
 });
@@ -17,3 +19,11 @@ Route::get('/register', function () {
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/logout', [UserController::class, 'logout']);
 Route::post('/login', [UserController::class, 'login']);
+Route::post('/add-to-cart', [GamesController::class, 'addToCart']);
+Route::post('/checkout', [GamesController::class, 'checkout'])->middleware('auth');
+
+Route::delete('/remove-from-cart', [GamesController::class, 'removeFromCart']);
+
+// route::post('/delete-game', [GamesController::class, 'deleteGame']);
+Route::put('/edit-game/{game}', [GamesController::class, 'updateGame']);
+
